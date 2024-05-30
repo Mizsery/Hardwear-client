@@ -8,7 +8,8 @@ module.exports = {
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended'
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js'],
+
+  ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js', 'src/components/ui/*'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -18,7 +19,7 @@ module.exports = {
   },
   plugins: ['react-refresh', 'simple-import-sort', 'import', 'prettier'],
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'no-param-reassign': 'off',
     /*Import*/
     'import/first': 'error',
     'import/extensions': 'off',
@@ -57,11 +58,19 @@ module.exports = {
         unnamedComponents: 'arrow-function'
       }
     ],
+    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react/jsx-props-no-spreading': 'off',
 
     /* Console*/
     'no-console': ['warn', { allow: ['info', 'error'] }],
 
     /*Typescript*/
-    '@typescript-eslint/no-shadow': 'off'
+    '@typescript-eslint/no-shadow': 'off',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false
+      }
+    ]
   }
 };
