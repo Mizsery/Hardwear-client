@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Bookmark, LogOut, MenuIcon, ShoppingCart, User } from 'lucide-react';
 
+import { Logo } from '../Logo/Logo';
 import { ModeToggle } from '../ModeToggle/ModeToggle';
 import { Button } from '../ui/button';
 
@@ -19,7 +20,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className='flex items-center justify-between bg-secondary px-8 py-4 md:px-3 lg:px-8'>
+    <header className='flex items-center justify-between bg-secondary px-8 py-4 md:px-3 lg:px-8'>
       <div className='hidden items-center gap-2 md:flex md:gap-2'>
         <Link
           className='text-sm font-medium uppercase underline-offset-4 hover:underline lg:text-lg '
@@ -47,15 +48,7 @@ export const Navbar = () => {
         </Link>
       </div>
 
-      <Link className='flex flex-col items-center justify-center' to='/'>
-        <span className='text-4xl font-bold uppercase tracking-widest'>hardwear</span>
-        <div className='flex w-full items-center'>
-          <hr className='my-2 h-1 w-52 border-0 border-none bg-primary' />
-          <span className='absolute ml-9 translate-x-1/2 bg-secondary pl-4 font-medium text-primary'>
-            униформа улиц
-          </span>
-        </div>
-      </Link>
+      <Logo />
 
       <div className='hidden items-center gap-4 md:flex md:gap-2'>
         <ModeToggle size='icon' variant='ghost' />
@@ -127,6 +120,6 @@ export const Navbar = () => {
           </div>
         </SheetContent>
       </Sheet>
-    </div>
+    </header>
   );
 };
