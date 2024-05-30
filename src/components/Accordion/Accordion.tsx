@@ -8,6 +8,15 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 
+const dictionary = {
+  '/': 'Одежда',
+  '/accessories': 'Аксессуары',
+  '/about-us': 'О проекте HardWear',
+  '/contact': 'Контакты',
+  '/wishlist': 'Вишлист',
+  '/cart': 'Корзина'
+};
+
 export const Accordion = () => {
   const location = useLocation();
 
@@ -17,9 +26,16 @@ export const Accordion = () => {
         <AccordionShadcn type='single' collapsible>
           <AccordionItem value='item-1'>
             <div className='flex items-center justify-between bg-inherit text-sm md:text-lg'>
-              <div>{location.pathname}</div>
+              <div className='flex gap-4  py-4 font-bold uppercase'>
+                {dictionary[location.pathname]}
+              </div>
+
               <AccordionTrigger className='flex gap-4 font-bold uppercase '>
-                Filter <SlidersVertical />
+                {location.pathname === '/' || location.pathname === '/accessories' ? (
+                  <div className='flex gap-4'>
+                    Фильтр <SlidersVertical />
+                  </div>
+                ) : null}
               </AccordionTrigger>
             </div>
 

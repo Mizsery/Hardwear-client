@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import { store } from './utils/api/store';
 
 import './index.css';
 
 import { Layout } from '@/components/Layout/Layout.tsx';
 import { ThemeProvider } from '@/features/theme/ThemeProvider.tsx';
 import { Accessories } from '@/pages/Accessories/Accessories';
+import { Auth } from '@/pages/Auth/Auth';
 import { Wear } from '@/pages/Wear/Wear';
 
 const router = createBrowserRouter([
@@ -41,16 +45,18 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/login',
-    element: <h1>login page</h1>,
+    path: '/auth',
+    element: <Auth />,
     children: []
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
