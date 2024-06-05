@@ -22,13 +22,6 @@ export const userApi = api.injectEndpoints({
       })
     }),
 
-    users: builder.query<User[], void>({
-      query: () => ({
-        url: '/users',
-        method: 'Get'
-      })
-    }),
-
     refresh: builder.query<{ token: string }, void>({
       query: () => ({
         url: '/refresh',
@@ -49,11 +42,9 @@ export const userApi = api.injectEndpoints({
 export const {
   useLoginMutation,
   useSignupMutation,
-  useUsersQuery,
-  useLazyUsersQuery,
   useLazyRefreshQuery,
   useRefreshQuery,
   useLogoutMutation
 } = userApi;
 
-export const { login, signup, users, refresh, logout } = userApi.endpoints;
+export const { login, signup, refresh, logout } = userApi.endpoints;

@@ -9,18 +9,39 @@ import './index.css';
 
 import { Layout } from '@/components/Layout/Layout.tsx';
 import { ThemeProvider } from '@/features/theme/ThemeProvider.tsx';
+import { AboutUs } from '@/pages/Abouts-us/AboutUs';
 import { Accessories } from '@/pages/Accessories/Accessories';
 import { Auth } from '@/pages/Auth/Auth';
+import { Contact } from '@/pages/Contact/Contact';
 import { Wear } from '@/pages/Wear/Wear';
+import { Wishlist } from './pages/Wishlist/Wishlist';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage';
+import { ProductItem } from './pages/ProductItem/ProductItem';
+import { CategoryWear } from './pages/Category/CategoryWear';
+import { CategoryAccessories } from './pages/Category/CategoryAccessories';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
+        path: '/',
         element: <Wear />
+      },
+      {
+        path: '/:categoryId/:productId',
+        element: <ProductItem />
+      },
+      {
+        path: '/wear/:categoryId',
+        element: <CategoryWear />
+      },
+      {
+        path: '/accessories/:categoryId',
+        element: <CategoryAccessories />
       },
       {
         path: '/accessories',
@@ -28,11 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/about-us',
-        element: <h1>AboutUs Page</h1>
+        element: <AboutUs />
       },
       {
         path: '/contact',
-        element: <h1>Contact Page</h1>
+        element: <Contact />
       },
       {
         path: '/cart',
@@ -40,7 +61,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/wishlist',
-        element: <h1>Wishlist</h1>
+        element: <Wishlist />
       }
     ]
   },

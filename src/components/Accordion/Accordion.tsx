@@ -1,5 +1,4 @@
-import { useLocation } from 'react-router-dom';
-import { SlidersVertical } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import {
   Accordion as AccordionShadcn,
@@ -8,46 +7,68 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 
-const dictionary = {
-  '/': 'Одежда',
-  '/accessories': 'Аксессуары',
-  '/about-us': 'О проекте HardWear',
-  '/contact': 'Контакты',
-  '/wishlist': 'Вишлист',
-  '/cart': 'Корзина'
+import { Button } from '../ui/button';
+import { SlidersVertical } from 'lucide-react';
+import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
+
+type category = {
+  id: string;
+  category: string;
 };
 
-export const Accordion = () => {
-  const location = useLocation();
+interface AccordionProps {
+  categories?: Category[];
+  title?: string;
+  link?: string;
+  hidden?: string;
+  category?: category;
+  productType?: string;
+  productItem?: boolean;
+}
 
+export const Accordion = ({
+  categories,
+  title,
+  link,
+  hidden,
+  category,
+  productType,
+  productItem
+}: AccordionProps) => {
   return (
-    <>
-      <div className='px-8 py-4'>
+    <div className='mb-10 w-auto '>
+      <div className='px-4 py-4 md:px-8'>
         <AccordionShadcn type='single' collapsible>
           <AccordionItem value='item-1'>
-            <div className='flex items-center justify-between bg-inherit text-sm md:text-lg'>
-              <div className='flex gap-4  py-4 font-bold uppercase'>
-                {dictionary[location.pathname]}
+            <div className='text-md flex items-center justify-between bg-inherit md:text-lg'>
+              <div className='flex h-auto  gap-4 py-4 font-bold uppercase'>
+                {productItem ? (
+                  <Breadcrumb category={category} productType={productType} title={title} />
+                ) : (
+                  title
+                )}
               </div>
 
-              <AccordionTrigger className='flex gap-4 font-bold uppercase '>
-                {location.pathname === '/' || location.pathname === '/accessories' ? (
-                  <div className='flex gap-4'>
-                    Фильтр <SlidersVertical />
-                  </div>
-                ) : null}
+              <AccordionTrigger className={`flex ${hidden} gap-4 font-bold uppercase`}>
+                <div className='flex gap-4'>
+                  Фильтр <SlidersVertical />
+                </div>
               </AccordionTrigger>
             </div>
 
             <AccordionContent>
-              <div>f</div>
-              <div>f</div>
-              <div>f</div>
+              <div className='flex gap-4'>
+                {categories?.map((category) => (
+                  <Button key={category.id} variant='outline' size='lg'>
+                    <Link to={`/${link}/${category.id}`}>{category.category}</Link>
+                  </Button>
+                ))}
+              </div>
             </AccordionContent>
           </AccordionItem>
         </AccordionShadcn>
       </div>
       <hr className='h-0.5 border-0 border-none bg-primary' />
-    </>
+    </div>
   );
 };

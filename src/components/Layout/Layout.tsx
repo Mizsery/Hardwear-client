@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Footer } from '../Footer/Footer';
-import { Navbar } from '../Navbar/Navbar';
+import { Footer } from '@/components/Footer/Footer';
+import { Navbar } from '@/components/Navbar/Navbar';
 
-import { Accordion } from '@/components/Accordion/Accordion';
 import { useLazyRefreshQuery } from '@/utils/api/services/userApi';
+import { Toaster } from '../ui/toaster';
 
 export const Layout = () => {
   const [triggerRefresh] = useLazyRefreshQuery();
@@ -18,9 +18,11 @@ export const Layout = () => {
 
   return (
     <>
+      <Toaster />
+
       <Navbar />
-      <Accordion />
-      <main className='mx-auto flex h-screen max-w-screen-lg pt-4'>
+
+      <main className='max-w-screen mx-auto h-full flex-1 px-4 pb-4 md:px-16 md:pb-16'>
         <Outlet />
       </main>
       <Footer />

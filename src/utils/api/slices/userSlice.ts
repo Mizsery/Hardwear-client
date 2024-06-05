@@ -32,12 +32,12 @@ const userSlice = createSlice({
       .addMatcher(userApi.endpoints.login.matchFulfilled, (state, action) => {
         localStorage.setItem('token', action.payload.accessToken as string);
         state.isAuthenticated = true;
-        state.user = action.payload.user as User;
+        state.user = action.payload.user;
       })
       .addMatcher(userApi.endpoints.refresh.matchFulfilled, (state, action) => {
         localStorage.setItem('token', action.payload.accessToken as string);
         state.isAuthenticated = true;
-        state.user = action.payload.user as User;
+        state.user = action.payload.user;
       })
       .addMatcher(userApi.endpoints.logout.matchFulfilled, (state) => {
         state.isAuthenticated = false;
