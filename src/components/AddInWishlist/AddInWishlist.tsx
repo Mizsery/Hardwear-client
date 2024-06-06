@@ -7,7 +7,7 @@ import {
 import { Bookmark } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import { Loading } from '@/components/Loading/Loading';
-import { AuthToast } from '@/components/AuthToast/AuthToast';
+import { Toast } from '../Toast/Toast';
 
 export const AddInWishlist = () => {
   const { productId } = useParams<{ productId: string }>() as { productId: string };
@@ -44,9 +44,14 @@ export const AddInWishlist = () => {
         )
       ) : (
         <>
-          <AuthToast>
+          <Toast
+            actionLink='/auth'
+            altText='Авторизация'
+            toastTitle='Авторизуйтесь, чтобы добавить товар'
+            actionText='Авторизация'
+          >
             <Bookmark className='h-8 w-8 fill-secondary stroke-primary' />
-          </AuthToast>
+          </Toast>
         </>
       )}
     </>
