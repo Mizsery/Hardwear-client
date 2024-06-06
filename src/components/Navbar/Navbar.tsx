@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Bookmark, LogOut, MenuIcon, ShoppingCart, User } from 'lucide-react';
+import { Bookmark, LogIn, LogOut, MenuIcon, ShoppingCart, User } from 'lucide-react';
 
 import { Logo } from '../Logo/Logo';
 import { ModeToggle } from '../ModeToggle/ModeToggle';
@@ -53,8 +53,8 @@ export const Navbar = () => {
       <div className='hidden items-center gap-4 md:flex md:gap-2'>
         <ModeToggle size='icon' variant='ghost' />
         <Button size='icon' variant='ghost'>
-          <Link className='flex items-center gap-2' to='/auth'>
-            <User className='h-6 w-6 stroke-foreground dark:stroke-primary' />
+          <Link className='flex items-center gap-2' to='/profile'>
+            <User className='h-6 w-6 stroke-primary' />
           </Link>
         </Button>
 
@@ -70,9 +70,15 @@ export const Navbar = () => {
           </Link>
         </Button>
 
-        {isAuthenticated && (
+        {isAuthenticated ? (
           <Button size='icon' variant='ghost' onClick={handleLogout}>
             <LogOut className='h-6 w-6 stroke-primary' />
+          </Button>
+        ) : (
+          <Button size='icon' variant='ghost'>
+            <Link className='flex items-center gap-2 ' to='/auth'>
+              <LogIn className='h-6 w-6 stroke-primary' />
+            </Link>
           </Button>
         )}
       </div>
