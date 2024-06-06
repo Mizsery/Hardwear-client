@@ -47,8 +47,31 @@ export const productApi = api.injectEndpoints({
 
     wishlist: builder.query<ProductInWishlist[], void>({
       query: () => ({
-        url: '/product-wishlist',
+        url: '/products-wishlist',
         method: 'Get'
+      })
+    }),
+
+    cart: builder.query<ProductInCart[], void>({
+      query: () => ({
+        url: '/products-cart',
+        method: 'Get'
+      })
+    }),
+
+    productToCart: builder.mutation<Products, { productId: string; size: string }>({
+      query: (body) => ({
+        url: `/product-cart`,
+        method: 'post',
+        body
+      })
+    }),
+
+    deleteProductInCart: builder.mutation<void, { body: {}; typeDelete: string }>({
+      query: ({ body, typeDelete }) => ({
+        url: `/product-cart?typeDelete=${typeDelete}`,
+        method: 'Delete',
+        body
       })
     })
   })
@@ -65,9 +88,13 @@ export const {
 
   useLazyWishlistQuery,
   useWishlistQuery,
-
   useDeleteProductInWishlistMutation,
-  useProductToWishlistMutation
+  useProductToWishlistMutation,
+  useDeleteProductInCartMutation,
+
+  useCartQuery,
+  useLazyCartQuery,
+  useProductToCartMutation
 } = productApi;
 
 export const {
@@ -76,5 +103,7 @@ export const {
   productToWishlist,
   deleteProductInWishlist,
   wishlist,
-  productsByCategory
+  productsByCategory,
+  cart,
+  productToCart
 } = productApi.endpoints;
