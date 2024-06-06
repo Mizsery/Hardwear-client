@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-
 import { Loading } from '@/components/Loading/Loading';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { useProductByIdQuery } from '@/utils/api/services/productsApi';
+import { useProductByIdQuery, useProductToCartMutation } from '@/utils/api/services/productsApi';
 import { AddInWishlist } from '@/components/AddInWishlist/AddInWishlist';
 import { Accordion } from '@/components/Accordion/Accordion';
+import { AddInCart } from '@/components/AddInCart/AddInCart';
 
 export const ProductItem = () => {
-  const params = useParams<{ categoryId: string; productId: string }>();
-
-  const { data: product, isLoading } = useProductByIdQuery(params.productId ?? '');
+  const { productId } = useParams<{ categoryId: string; productId: string }>();
+  const { data: product, isLoading } = useProductByIdQuery(productId ?? '');
+  const [addToCart] = useProductToCartMutation();
 
   const form = useForm();
 
@@ -20,8 +20,16 @@ export const ProductItem = () => {
     return <Loading />;
   }
 
-  const onSubmit = (data) => {
-    console.log(data, product?.id);
+  const onSubmit = async (size: { size?: string }) => {
+    try {
+      if (size.size === undefined) {
+        await addToCart({ productId, size: '' }).unwrap();
+      } else {
+        await addToCart({ productId, size: size.size }).unwrap();
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -87,15 +95,11 @@ export const ProductItem = () => {
                               Выберите размер
                             </Button>
                           ) : (
-                            <Button type='submit' className='w-1/2 md:w-2/5'>
-                              В корзину
-                            </Button>
+                            <AddInCart />
                           )}
                         </>
                       ) : (
-                        <Button type='submit' className='w-1/2 md:w-2/5'>
-                          В корзину
-                        </Button>
+                        <AddInCart />
                       )}
 
                       <AddInWishlist />
