@@ -42,5 +42,14 @@ interface ProductInWishlist {
   productId: string;
   user: User;
   userId: string;
-  inWishlist: boolean;
+}
+
+interface ProductInCart {
+  id: string;
+  product: Products;
+  productId: string;
+  size: string;
+  quantity: number;
+  user: User;
+  userId: string;
 }
