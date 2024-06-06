@@ -37,7 +37,6 @@ export const Login = ({ setSelectedTab }: LoginProps) => {
     try {
       await login(values).unwrap();
       navigate('/');
-      console.log(values);
     } catch (error) {
       console.error(error);
     }
