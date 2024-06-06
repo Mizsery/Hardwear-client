@@ -1,4 +1,5 @@
 import { Accordion } from '@/components/Accordion/Accordion';
+import { AuthCheck } from '@/components/AuthCheck/AuthCheck';
 import { Loading } from '@/components/Loading/Loading';
 import { Button } from '@/components/ui/button';
 import {
@@ -34,14 +35,14 @@ export const Wishlist = () => {
         <>
           {wishlist.map((wish) => (
             <div
-              className='m-2 mx-auto items-center justify-around md:grid md:w-3/4 md:grid-cols-4'
+              className='m-2 mx-auto items-center justify-around md:grid md:grid-cols-4'
               key={wish.id}
             >
               <div className='flex justify-center md:p-4'>
                 <img
                   src={`${'http://localhost:3000'}${wish.product.image}`}
                   alt={wish.product.name}
-                  className='object-fit h-[250px] w-[200px] rounded-xl'
+                  className='h-auto w-[340px] rounded-xl md:max-w-full'
                 />
               </div>
 
@@ -77,14 +78,7 @@ export const Wishlist = () => {
           ))}
         </>
       ) : (
-        <div className='flex items-center justify-center'>
-          <p className='items-center text-xs md:text-lg'>
-            Ваш вишлист пока пуст{' '}
-            <Button variant='link' className='px-1 text-xs md:text-lg'>
-              <Link to={'/'}>к покупкам</Link>
-            </Button>
-          </p>
-        </div>
+        <AuthCheck link='/' message='Ваш вишлист пока пуст' linkMessage='к покупкам' />
       )}
     </>
   );
