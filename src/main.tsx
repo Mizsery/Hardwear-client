@@ -19,6 +19,8 @@ import { ErrorPage } from './pages/ErrorPage/ErrorPage';
 import { ProductItem } from './pages/ProductItem/ProductItem';
 import { CategoryWear } from './pages/Category/CategoryWear';
 import { CategoryAccessories } from './pages/Category/CategoryAccessories';
+import { Profile } from './pages/Profile/Profile';
+import { Cart } from './pages/Cart/Cart';
 
 const router = createBrowserRouter([
   {
@@ -57,11 +59,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <h1>Cart</h1>
+        element: <Cart />
       },
       {
         path: '/wishlist',
         element: <Wishlist />
+      },
+      {
+        path: '/profile',
+        element: <Profile />
       }
     ]
   },
