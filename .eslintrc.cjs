@@ -49,6 +49,7 @@ module.exports = {
     ],
 
     /*React*/
+    'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/button-has-type': 'warn',
     'react/function-component-definition': [

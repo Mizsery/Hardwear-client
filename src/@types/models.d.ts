@@ -6,9 +6,11 @@ interface User {
   password: string;
 
   productInWishlist: ProductInWishlist[];
+  productInCart: ProductInCart[];
+  order: Order[];
 }
 
-interface Products {
+interface Product {
   id: string;
   name: string;
   description: string;
@@ -21,24 +23,26 @@ interface Products {
   typeProduct: 'Wear' | 'Accessories';
 
   productInWishlist: ProductInWishlist[];
+  productInCart: ProductInCart[];
+  productInOder: ProductInOder[];
 }
 
 interface Sizes {
   id: string;
   size: string;
-  product: Products[];
+  product: Product[];
   productId: string;
 }
 
 interface Category {
   id: string;
   category: string;
-  products: Products[];
+  products: Product[];
 }
 
 interface ProductInWishlist {
   id: string;
-  product: Products;
+  product: Product;
   productId: string;
   user: User;
   userId: string;
@@ -46,10 +50,37 @@ interface ProductInWishlist {
 
 interface ProductInCart {
   id: string;
-  product: Products;
-  productId: string;
   size: string;
   quantity: number;
+  product: Products;
+  productId: string;
   user: User;
   userId: string;
+}
+
+interface ProductInOrder {
+  id: string;
+  size: string;
+  quantity: number;
+  product: Products;
+  productId: string;
+  order: Order;
+  orderId: string;
+}
+
+interface Order {
+  id: string;
+  address: Address;
+  netAmount: number;
+  createdAt: Date;
+  user: User;
+  userId: string;
+  productInOrder: ProductInOrder[];
+}
+
+interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
 }
