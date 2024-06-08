@@ -4,17 +4,20 @@ import { Accordion } from '@/components/Accordion/Accordion';
 import { AuthCheck } from '@/components/AuthCheck/AuthCheck';
 import { Loading } from '@/components/Loading/Loading';
 import { Button } from '@/components/ui/button';
+import { useAppSelector } from '@/utils/api/hooks';
 import {
   useDeleteProductInWishlistMutation,
   useLazyWishlistQuery,
   useWishlistQuery
 } from '@/utils/api/services/wishlistApi';
+import { selectIsAuthenticated } from '@/utils/api/slices/userSlice';
 import { BASE_URL } from '@/utils/constant/api';
 
 export const Wishlist = () => {
   const { data: wishlist, isLoading } = useWishlistQuery();
   const [deleteInWishlist] = useDeleteProductInWishlistMutation();
   const [triggerWishlist] = useLazyWishlistQuery();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
   if (isLoading) {
     <Loading />;
@@ -33,7 +36,7 @@ export const Wishlist = () => {
     <>
       <Accordion title='Вишлист' hidden='hidden' />
 
-      {wishlist && wishlist.length > 0 ? (
+      {isAuthenticated && wishlist && wishlist.length > 0 ? (
         <>
           {wishlist.map((wish) => (
             <div

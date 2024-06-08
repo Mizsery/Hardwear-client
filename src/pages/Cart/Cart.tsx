@@ -3,12 +3,14 @@ import { AuthCheck } from '@/components/AuthCheck/AuthCheck';
 import { Loading } from '@/components/Loading/Loading';
 import { OrderForm } from '@/components/OrderForm/OrderForm';
 import { Button } from '@/components/ui/button';
+import { useAppSelector } from '@/utils/api/hooks';
 import {
   useCartQuery,
   useDeleteProductInCartMutation,
   useLazyCartQuery,
   useProductToCartMutation
 } from '@/utils/api/services/cartApi';
+import { selectIsAuthenticated } from '@/utils/api/slices/userSlice';
 import { BASE_URL } from '@/utils/constant/api';
 
 export const Cart = () => {
@@ -16,6 +18,7 @@ export const Cart = () => {
   const [triggerCart] = useLazyCartQuery();
   const [addToCart] = useProductToCartMutation();
   const [deleteInCart] = useDeleteProductInCartMutation();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
   if (isLoading) {
     <Loading />;
@@ -47,7 +50,7 @@ export const Cart = () => {
     <>
       <Accordion title='корзина' hidden='hidden' />
 
-      {cart && cart.length > 0 ? (
+      {isAuthenticated && cart && cart.length > 0 ? (
         <div className='flex flex-col md:grid md:grid-cols-5'>
           <div className='md:col-span-5 lg:col-span-4'>
             {cart.map((prod) => (

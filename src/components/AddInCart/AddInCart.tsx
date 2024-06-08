@@ -1,10 +1,13 @@
 import { Toast } from '../Toast/Toast';
 
 import { Loading } from '@/components/Loading/Loading';
+import { useAppSelector } from '@/utils/api/hooks';
 import { useCartQuery } from '@/utils/api/services/cartApi';
+import { selectIsAuthenticated } from '@/utils/api/slices/userSlice';
 
 export const AddInCart = () => {
   const { data: cart, isLoading } = useCartQuery();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
   if (isLoading) {
     return <Loading />;
@@ -12,7 +15,7 @@ export const AddInCart = () => {
 
   return (
     <div className='w-1/2 md:w-2/5'>
-      {cart ? (
+      {isAuthenticated && cart ? (
         <Toast
           full='w-full'
           type='submit'
@@ -31,7 +34,7 @@ export const AddInCart = () => {
           full='w-full'
           type='submit'
           variant='default'
-          size='lg'
+          size='default'
           actionLink='/auth'
           altText='Авторизация'
           toastTitle='Авторизуйтесь, чтобы добавить товар'

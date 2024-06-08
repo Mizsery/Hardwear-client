@@ -5,12 +5,14 @@ import { Bookmark } from 'lucide-react';
 import { Toast } from '../Toast/Toast';
 
 import { Loading } from '@/components/Loading/Loading';
+import { useAppSelector } from '@/utils/api/hooks';
 import {
   useDeleteProductInWishlistMutation,
   useLazyWishlistQuery,
   useProductToWishlistMutation,
   useWishlistQuery
 } from '@/utils/api/services/wishlistApi';
+import { selectIsAuthenticated } from '@/utils/api/slices/userSlice';
 
 export const AddInWishlist = () => {
   const { productId } = useParams<{ productId: string }>() as { productId: string };
@@ -18,6 +20,7 @@ export const AddInWishlist = () => {
   const [addToWishlist] = useProductToWishlistMutation();
   const [deleteInWishlist] = useDeleteProductInWishlistMutation();
   const [triggerWishlist] = useLazyWishlistQuery();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
   if (isLoading) {
     return <Loading />;
@@ -41,7 +44,7 @@ export const AddInWishlist = () => {
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {wishlist ? (
+      {isAuthenticated && wishlist ? (
         checkInWishlist ? (
           <Bookmark className='h-8 w-8 fill-primary stroke-primary ' onClick={handleClick} />
         ) : (
