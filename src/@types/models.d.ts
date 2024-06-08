@@ -19,13 +19,17 @@ interface Product {
   sizes: Sizes[];
   category: Category;
   categoryId?: string;
-
   typeProduct: 'Wear' | 'Accessories';
 
   productInWishlist: ProductInWishlist[];
   productInCart: ProductInCart[];
-  productInOder: ProductInOder[];
+  productInOrder: ProductInOrder[];
 }
+
+type ProductWithoutRelation = Omit<
+  Product,
+  'productInWishlist' | 'productInCart' | 'productInOrder'
+>;
 
 interface Sizes {
   id: string;
@@ -37,7 +41,7 @@ interface Sizes {
 interface Category {
   id: string;
   category: string;
-  products: Product[];
+  product: Product[];
 }
 
 interface ProductInWishlist {
@@ -52,7 +56,7 @@ interface ProductInCart {
   id: string;
   size: string;
   quantity: number;
-  product: Products;
+  product: Product;
   productId: string;
   user: User;
   userId: string;
@@ -62,7 +66,7 @@ interface ProductInOrder {
   id: string;
   size: string;
   quantity: number;
-  product: Products;
+  product: Product;
   productId: string;
   order: Order;
   orderId: string;

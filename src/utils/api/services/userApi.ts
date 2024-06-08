@@ -1,9 +1,11 @@
-/* eslint-disable import/no-cycle */
 import { api } from './api';
 
 export const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<{ token: string }, { email: string; password: string }>({
+    login: builder.mutation<
+      { accessToken: string; user: { email: User['email']; name: User['name'] } },
+      { email: User['email']; password: User['password'] }
+    >({
       query: (userData) => ({
         url: '/login',
         method: 'Post',
@@ -22,7 +24,10 @@ export const userApi = api.injectEndpoints({
       })
     }),
 
-    refresh: builder.query<{ token: string }, void>({
+    refresh: builder.query<
+      { accessToken: string; user: { email: User['email']; name: User['name'] } },
+      void
+    >({
       query: () => ({
         url: '/refresh',
         method: 'Get',

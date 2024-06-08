@@ -1,11 +1,10 @@
-/* eslint-disable import/no-cycle */
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { logout, tokenReceived } from '../slices/userSlice';
 import { RootState } from '../store';
 
-const BASE_URL = 'http://localhost:3000';
+import { BASE_URL } from '@/utils/constant/api';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${BASE_URL}/api`,
