@@ -1,8 +1,8 @@
+import { Link } from 'react-router-dom';
+
 import { Button } from '@/components/ui/button';
 import { ToastAction } from '@/components/ui/toast';
 import { useToast } from '@/components/ui/use-toast';
-
-import { Link } from 'react-router-dom';
 
 interface ToastProps {
   children?: React.ReactElement | string;
@@ -14,6 +14,7 @@ interface ToastProps {
   size?: 'default' | 'sm' | 'lg' | 'icon' | null;
   type?: 'submit' | 'reset' | 'button';
   full?: string;
+  toastVariant?: 'default' | 'destructive' | null;
 }
 
 export const Toast = ({
@@ -25,7 +26,8 @@ export const Toast = ({
   variant = 'ghost',
   size = 'icon',
   type = undefined,
-  full
+  full,
+  toastVariant
 }: ToastProps) => {
   const { toast } = useToast();
 
@@ -37,13 +39,14 @@ export const Toast = ({
       type={type}
       onClick={() => {
         toast({
+          variant: toastVariant,
           title: toastTitle,
           action: (
             <ToastAction asChild altText={altText}>
               <Link to={`${actionLink}`}>{actionText}</Link>
             </ToastAction>
           ),
-          duration: 5000
+          duration: 3000
         });
       }}
     >

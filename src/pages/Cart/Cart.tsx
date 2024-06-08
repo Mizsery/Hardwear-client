@@ -1,6 +1,7 @@
 import { Accordion } from '@/components/Accordion/Accordion';
 import { AuthCheck } from '@/components/AuthCheck/AuthCheck';
 import { Loading } from '@/components/Loading/Loading';
+import { OrderForm } from '@/components/OrderForm/OrderForm';
 import { Button } from '@/components/ui/button';
 import {
   useCartQuery,
@@ -8,6 +9,7 @@ import {
   useLazyCartQuery,
   useProductToCartMutation
 } from '@/utils/api/services/productsApi';
+import { BASE_URL } from '@/utils/constant/api';
 
 export const Cart = () => {
   const { data: cart, isLoading } = useCartQuery();
@@ -37,6 +39,10 @@ export const Cart = () => {
     }
   };
 
+  const amount = cart?.reduce((prev, curr) => {
+    return prev + curr.quantity * +curr.product.price;
+  }, 0);
+
   return (
     <>
       <Accordion title='корзина' hidden='hidden' />
@@ -48,9 +54,9 @@ export const Cart = () => {
               <div className='m-2 items-center md:grid md:grid-cols-4' key={prod.id}>
                 <div className='flex justify-center md:p-4'>
                   <img
-                    src={`${'http://localhost:3000'}${prod.product.image}`}
+                    src={`${BASE_URL}${prod.product.image}`}
                     alt={prod.product.name}
-                    className='h-auto w-[340px] rounded-xl md:max-w-full'
+                    className='h-auto w-[340px] rounded-xl shadow-xl md:max-w-full'
                   />
                 </div>
 
@@ -99,7 +105,9 @@ export const Cart = () => {
               </div>
             ))}
           </div>
-          <div>F</div>
+          <div className='md:col-span-5 lg:col-span-1'>
+            <OrderForm amount={amount} />
+          </div>
         </div>
       ) : (
         <AuthCheck link='/' message='Ваша корзина пуста' linkMessage='к покупкам' />

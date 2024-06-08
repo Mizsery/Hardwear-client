@@ -2,7 +2,7 @@
 import { api } from './api';
 
 interface Some {
-  products: Products[];
+  products: Product[];
   categories: Omit<Category[], 'products'>;
 }
 
@@ -16,7 +16,7 @@ export const productApi = api.injectEndpoints({
       })
     }),
 
-    productById: builder.query<Products, string>({
+    productById: builder.query<Product, string>({
       query: (id) => ({
         url: `/product/${id}`,
         method: 'get'
@@ -30,7 +30,7 @@ export const productApi = api.injectEndpoints({
       })
     }),
 
-    productToWishlist: builder.mutation<Products, { productId: string }>({
+    productToWishlist: builder.mutation<Product, { productId: string }>({
       query: (body) => ({
         url: `/product-wishlist`,
         method: 'post',
@@ -59,7 +59,7 @@ export const productApi = api.injectEndpoints({
       })
     }),
 
-    productToCart: builder.mutation<Products, { productId: string; size: string }>({
+    productToCart: builder.mutation<Product, { productId: string; size: string }>({
       query: (body) => ({
         url: `/product-cart`,
         method: 'post',
@@ -72,6 +72,28 @@ export const productApi = api.injectEndpoints({
         url: `/product-cart?typeDelete=${typeDelete}`,
         method: 'Delete',
         body
+      })
+    }),
+
+    productToOrder: builder.mutation<Order, Address>({
+      query: (body) => ({
+        url: '/order',
+        method: 'post',
+        body
+      })
+    }),
+
+    orders: builder.query<Order[], void>({
+      query: () => ({
+        url: `/orders`,
+        method: 'Get'
+      })
+    }),
+
+    orderById: builder.query<Order, string>({
+      query: (id) => ({
+        url: `/order/${id}`,
+        method: 'Get'
       })
     })
   })
@@ -94,7 +116,11 @@ export const {
 
   useCartQuery,
   useLazyCartQuery,
-  useProductToCartMutation
+  useProductToCartMutation,
+
+  useProductToOrderMutation,
+  useOrdersQuery,
+  useOrderByIdQuery
 } = productApi;
 
 export const {
@@ -105,5 +131,8 @@ export const {
   wishlist,
   productsByCategory,
   cart,
-  productToCart
+  productToCart,
+  productToOrder,
+  orders,
+  orderById
 } = productApi.endpoints;
