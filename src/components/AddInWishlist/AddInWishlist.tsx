@@ -10,7 +10,7 @@ import {
   useLazyWishlistQuery,
   useProductToWishlistMutation,
   useWishlistQuery
-} from '@/utils/api/services/productsApi';
+} from '@/utils/api/services/wishlistApi';
 
 export const AddInWishlist = () => {
   const { productId } = useParams<{ productId: string }>() as { productId: string };

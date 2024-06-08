@@ -15,7 +15,8 @@ import {
   FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useLazyCartQuery, useProductToOrderMutation } from '@/utils/api/services/productsApi';
+import { useLazyCartQuery } from '@/utils/api/services/cartApi';
+import { useProductToOrderMutation } from '@/utils/api/services/orderApi';
 
 interface OrderFormProps {
   amount?: number;

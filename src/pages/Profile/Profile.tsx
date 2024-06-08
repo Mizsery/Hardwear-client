@@ -12,7 +12,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { useAppSelector } from '@/utils/api/hooks';
-import { useOrdersQuery } from '@/utils/api/services/productsApi';
+import { useOrdersQuery } from '@/utils/api/services/orderApi';
 import { selectIsAuthenticated, selectUser } from '@/utils/api/slices/userSlice';
 import { formatToLocaleDate } from '@/utils/helpers/formatToLocaleDate';
 

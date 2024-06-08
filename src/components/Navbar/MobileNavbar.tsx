@@ -20,13 +20,13 @@ export const MobileNavbar = ({ isAuthenticated, handleLogout }: MobileNavbarProp
         <SheetTrigger asChild>
           <Button size='icon' variant='ghost'>
             <MenuIcon className='h-6 w-6' />
-            <span className='sr-only'>Toggle navigation menu</span>
+            <span className='sr-only'>Меню навигации</span>
           </Button>
         </SheetTrigger>
 
         <SheetContent side='top'>
-          <div className='flex'>
-            <div className='grid w-[200px] p-4'>
+          <div className='grid grid-cols-2 gap-2'>
+            <div className='grid'>
               <Link className='text-xl font-medium underline-offset-4 hover:underline' to='/'>
                 Одежда
               </Link>
@@ -50,7 +50,7 @@ export const MobileNavbar = ({ isAuthenticated, handleLogout }: MobileNavbarProp
               </Link>
             </div>
 
-            <div className='grid w-[200px] p-4'>
+            <div className='grid '>
               <Link
                 className='text-xl font-medium underline-offset-4 hover:underline'
                 to='/profile'
@@ -66,17 +66,23 @@ export const MobileNavbar = ({ isAuthenticated, handleLogout }: MobileNavbarProp
               <Link className='text-xl font-medium underline-offset-4 hover:underline' to='/cart'>
                 Корзина
               </Link>
+            </div>
 
+            <div className='col-span-2'>
               {isAuthenticated ? (
                 <Button
                   variant='link'
+                  size='lg'
                   onClick={handleLogout}
                   className='justify-start p-0 text-xl font-medium text-foreground underline-offset-4 hover:underline'
                 >
                   Выход
                 </Button>
               ) : (
-                <Link className='text-xl font-medium underline-offset-4 hover:underline' to='/auth'>
+                <Link
+                  className='justify-start p-0 text-xl font-medium underline-offset-4 hover:underline'
+                  to='/auth'
+                >
                   Вход
                 </Link>
               )}

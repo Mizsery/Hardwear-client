@@ -1,7 +1,7 @@
 import { Toast } from '../Toast/Toast';
 
 import { Loading } from '@/components/Loading/Loading';
-import { useCartQuery } from '@/utils/api/services/productsApi';
+import { useCartQuery } from '@/utils/api/services/cartApi';
 
 export const AddInCart = () => {
   const { data: cart, isLoading } = useCartQuery();

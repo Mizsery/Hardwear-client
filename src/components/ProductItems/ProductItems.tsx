@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter } from '../ui/card';
 import { BASE_URL } from '@/utils/constant/api';
 
 interface ProductItemsProps {
-  product: Product;
+  product: ProductWithoutRelation;
 }
 
 export const ProductItems = ({ product }: ProductItemsProps) => {
@@ -22,7 +22,7 @@ export const ProductItems = ({ product }: ProductItemsProps) => {
         <CardFooter>
           <div className='flex flex-col text-sm md:text-lg'>
             <p className='font-bold'>{product.name} </p>
-            <p>{product.price} р.</p>
+            <p>{product.price} руб.</p>
           </div>
         </CardFooter>
       </Card>

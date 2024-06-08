@@ -8,7 +8,7 @@ import {
   useDeleteProductInCartMutation,
   useLazyCartQuery,
   useProductToCartMutation
-} from '@/utils/api/services/productsApi';
+} from '@/utils/api/services/cartApi';
 import { BASE_URL } from '@/utils/constant/api';
 
 export const Cart = () => {
@@ -51,7 +51,7 @@ export const Cart = () => {
         <div className='flex flex-col md:grid md:grid-cols-5'>
           <div className='md:col-span-5 lg:col-span-4'>
             {cart.map((prod) => (
-              <div className='m-2 items-center md:grid md:grid-cols-4' key={prod.id}>
+              <div className=' items-center md:grid md:grid-cols-4' key={prod.id}>
                 <div className='flex justify-center md:p-4'>
                   <img
                     src={`${BASE_URL}${prod.product.image}`}
@@ -65,7 +65,7 @@ export const Cart = () => {
                   <div className='md:text-lg'>
                     {prod.size ? <div>Размер {prod.size}</div> : null}
                   </div>
-                  <div className='flex flex-col items-center md:gap-2'>
+                  <div className='flex flex-col items-center gap-2 md:gap-2'>
                     <span>Количество:</span>
                     <div className='flex items-center justify-center gap-2'>
                       <Button
@@ -89,8 +89,8 @@ export const Cart = () => {
                   </div>
                 </div>
 
-                <div className='flex justify-center font-bold  md:text-xl'>
-                  {prod.product.price} р.
+                <div className='mt-2 flex justify-center font-bold md:text-xl'>
+                  {prod.product.price} руб.
                 </div>
 
                 <div className='flex items-center justify-center'>

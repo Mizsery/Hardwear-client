@@ -9,7 +9,6 @@ export const Wear = () => {
   if (isLoading) {
     return <Loading />;
   }
-
   const { products, categories } = { ...data };
 
   return (

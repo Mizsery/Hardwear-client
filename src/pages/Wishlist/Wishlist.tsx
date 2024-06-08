@@ -8,7 +8,7 @@ import {
   useDeleteProductInWishlistMutation,
   useLazyWishlistQuery,
   useWishlistQuery
-} from '@/utils/api/services/productsApi';
+} from '@/utils/api/services/wishlistApi';
 import { BASE_URL } from '@/utils/constant/api';
 
 export const Wishlist = () => {
@@ -37,7 +37,7 @@ export const Wishlist = () => {
         <>
           {wishlist.map((wish) => (
             <div
-              className='m-2 mx-auto items-center justify-around md:grid md:grid-cols-4'
+              className='m-2 mx-auto items-center justify-around md:grid md:grid-cols-3 lg:grid-cols-4'
               key={wish.id}
             >
               <div className='flex justify-center md:p-4'>
@@ -48,8 +48,10 @@ export const Wishlist = () => {
                 />
               </div>
 
-              <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex md:gap-0 '>
-                <span className='font-bold md:text-xl'>{wish.product.name}</span>
+              <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex '>
+                <div className='text-wrap text-center font-bold md:text-lg'>
+                  {wish.product.name}
+                </div>
                 <div>
                   {wish.product.sizes.length > 0 ? <span>Размеры: </span> : null}
                   {wish.product.sizes.map((s) => (
@@ -59,10 +61,10 @@ export const Wishlist = () => {
               </div>
 
               <div className='flex justify-center font-bold  md:text-xl'>
-                {wish.product.price} р.
+                {wish.product.price} руб.
               </div>
 
-              <div className='flex items-center justify-center'>
+              <div className='flex items-center justify-center md:col-span-3 lg:col-span-1'>
                 <Button
                   className='md:text-lg'
                   variant='link'

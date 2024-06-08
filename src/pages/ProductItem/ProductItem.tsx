@@ -8,7 +8,8 @@ import { Loading } from '@/components/Loading/Loading';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField } from '@/components/ui/form';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { useProductByIdQuery, useProductToCartMutation } from '@/utils/api/services/productsApi';
+import { useProductToCartMutation } from '@/utils/api/services/cartApi';
+import { useProductByIdQuery } from '@/utils/api/services/productsApi';
 import { BASE_URL } from '@/utils/constant/api';
 
 export const ProductItem = () => {
@@ -24,10 +25,12 @@ export const ProductItem = () => {
 
   const onSubmit = async (size: { size?: string }) => {
     try {
-      if (size.size === undefined) {
-        await addToCart({ productId, size: '' }).unwrap();
-      } else {
-        await addToCart({ productId, size: size.size }).unwrap();
+      if (productId !== undefined) {
+        if (size.size === undefined) {
+          await addToCart({ productId, size: '' }).unwrap();
+        } else {
+          await addToCart({ productId, size: size.size }).unwrap();
+        }
       }
     } catch (error) {
       console.error(error);
@@ -57,7 +60,7 @@ export const ProductItem = () => {
                 </div>
                 <div className='flex flex-col items-start gap-2'>
                   <div className='text-lg md:text-2xl'>{product.name}</div>
-                  <div className='text-lg font-bold md:text-2xl'>{product.price} р.</div>
+                  <div className='text-lg font-bold md:text-2xl'>{product.price} руб.</div>
                   <div>{product.description}</div>
 
                   <div className='flex gap-2'>

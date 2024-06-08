@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Accordion } from '@/components/Accordion/Accordion';
 import { Loading } from '@/components/Loading/Loading';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useOrderByIdQuery } from '@/utils/api/services/productsApi';
+import { useOrderByIdQuery } from '@/utils/api/services/orderApi';
 import { BASE_URL } from '@/utils/constant/api';
 import { formatToLocaleDate } from '@/utils/helpers/formatToLocaleDate';
 
@@ -52,9 +52,11 @@ export const Order = () => {
                       className='h-auto w-[340px] rounded-xl shadow-xl md:max-w-full'
                     />
                   </div>
-                  <div className='flex flex-col items-center justify-center gap-4'>
-                    <div className='font-bold lg:text-xl'>Название: {prod.product.name}</div>
-                    <div className='font-semibold'>Размер: {prod.size}</div>
+                  <div className='flex flex-col items-center justify-center gap-0'>
+                    <div className='text-wrap text-center font-bold md:text-lg'>
+                      {prod.product.name}
+                    </div>
+                    {prod.size && <div className='font-semibold'>Размер: {prod.size}</div>}
                     <div className='font-semibold'>Количество: {prod.quantity}</div>
                   </div>
                   <div className='flex justify-center font-bold md:text-xl'>
