@@ -12,15 +12,16 @@ import { ThemeProvider } from '@/features/theme/ThemeProvider.tsx';
 import { AboutUs } from '@/pages/Abouts-us/AboutUs';
 import { Accessories } from '@/pages/Accessories/Accessories';
 import { Auth } from '@/pages/Auth/Auth';
+import { Cart } from '@/pages/Cart/Cart';
+import { CategoryAccessories } from '@/pages/Category/CategoryAccessories';
+import { CategoryWear } from '@/pages/Category/CategoryWear';
 import { Contact } from '@/pages/Contact/Contact';
+import { ErrorPage } from '@/pages/ErrorPage/ErrorPage';
+import { Order } from '@/pages/Order/Order';
+import { ProductItem } from '@/pages/ProductItem/ProductItem';
+import { Profile } from '@/pages/Profile/Profile';
 import { Wear } from '@/pages/Wear/Wear';
-import { Wishlist } from './pages/Wishlist/Wishlist';
-import { ErrorPage } from './pages/ErrorPage/ErrorPage';
-import { ProductItem } from './pages/ProductItem/ProductItem';
-import { CategoryWear } from './pages/Category/CategoryWear';
-import { CategoryAccessories } from './pages/Category/CategoryAccessories';
-import { Profile } from './pages/Profile/Profile';
-import { Cart } from './pages/Cart/Cart';
+import { Wishlist } from '@/pages/Wishlist/Wishlist';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />
+      },
+      {
+        path: '/order/:id',
+        element: <Order />
       },
       {
         path: '/cart',

@@ -1,7 +1,7 @@
-import { useCartQuery } from '@/utils/api/services/productsApi';
+import { Toast } from '../Toast/Toast';
 
 import { Loading } from '@/components/Loading/Loading';
-import { Toast } from '../Toast/Toast';
+import { useCartQuery } from '@/utils/api/services/productsApi';
 
 export const AddInCart = () => {
   const { data: cart, isLoading } = useCartQuery();
@@ -11,24 +11,23 @@ export const AddInCart = () => {
   }
 
   return (
-    <>
+    <div className='w-1/2 md:w-2/5'>
       {cart ? (
-        <div className='w-1/2 md:w-2/5'>
-          <Toast
-            full='w-full'
-            type='submit'
-            variant='default'
-            size='default'
-            actionLink='/cart'
-            altText='В корзину'
-            toastTitle='Товар добавлен в корзину'
-            actionText='В корзину'
-          >
-            В корзину
-          </Toast>
-        </div>
+        <Toast
+          full='w-full'
+          type='submit'
+          variant='default'
+          size='default'
+          actionLink='/cart'
+          altText='В корзину'
+          toastTitle='Товар добавлен в корзину'
+          actionText='В корзину'
+        >
+          В корзину
+        </Toast>
       ) : (
         <Toast
+          toastVariant='destructive'
           full='w-full'
           type='submit'
           variant='default'
@@ -41,6 +40,6 @@ export const AddInCart = () => {
           В корзину
         </Toast>
       )}
-    </>
+    </div>
   );
 };

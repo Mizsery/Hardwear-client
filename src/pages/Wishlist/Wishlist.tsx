@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Accordion } from '@/components/Accordion/Accordion';
 import { AuthCheck } from '@/components/AuthCheck/AuthCheck';
 import { Loading } from '@/components/Loading/Loading';
@@ -7,7 +9,7 @@ import {
   useLazyWishlistQuery,
   useWishlistQuery
 } from '@/utils/api/services/productsApi';
-import { Link } from 'react-router-dom';
+import { BASE_URL } from '@/utils/constant/api';
 
 export const Wishlist = () => {
   const { data: wishlist, isLoading } = useWishlistQuery();
@@ -40,9 +42,9 @@ export const Wishlist = () => {
             >
               <div className='flex justify-center md:p-4'>
                 <img
-                  src={`${'http://localhost:3000'}${wish.product.image}`}
+                  src={`${BASE_URL}${wish.product.image}`}
                   alt={wish.product.name}
-                  className='h-auto w-[340px] rounded-xl md:max-w-full'
+                  className='h-auto w-[340px] rounded-xl shadow-xl md:max-w-full'
                 />
               </div>
 

@@ -1,8 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 import { Accordion } from '@/components/Accordion/Accordion';
 import { Loading } from '@/components/Loading/Loading';
 import { ProductItems } from '@/components/ProductItems/ProductItems';
 import { useProductsByCategoryQuery } from '@/utils/api/services/productsApi';
-import { useParams } from 'react-router-dom';
 
 export const CategoryWear = () => {
   const params = useParams<{ categoryId: string }>();

@@ -1,14 +1,15 @@
-import { SlashIcon } from '@radix-ui/react-icons';
 import { Link } from 'react-router-dom';
+import { SlashIcon } from '@radix-ui/react-icons';
+
 import { Button } from '../ui/button';
 
-type category = {
+type CategoryOmit = {
   id: string;
   category: string;
 };
 
 interface BreadcrumbProps {
-  category?: category;
+  category?: CategoryOmit;
   productType?: string;
   title?: string;
 }
@@ -20,7 +21,7 @@ export const Breadcrumb = ({ category, productType, title }: BreadcrumbProps) =>
         <>
           <>
             <Button variant='link'>
-              <Link className='text-sm lg:text-lg' to={'/'}>
+              <Link className='text-sm lg:text-lg' to='/'>
                 Одежда
               </Link>
             </Button>
@@ -38,7 +39,7 @@ export const Breadcrumb = ({ category, productType, title }: BreadcrumbProps) =>
       ) : (
         <>
           <Button variant='link'>
-            <Link className='text-sm lg:text-lg' to={'/accessories'}>
+            <Link className='text-sm lg:text-lg' to='/accessories'>
               Аксессуары
             </Link>
           </Button>

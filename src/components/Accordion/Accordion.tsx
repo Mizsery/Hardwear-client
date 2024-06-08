@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom';
+import { SlidersVertical } from 'lucide-react';
+
+import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
+import { Button } from '../ui/button';
 
 import {
   Accordion as AccordionShadcn,
@@ -6,10 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-
-import { Button } from '../ui/button';
-import { SlidersVertical } from 'lucide-react';
-import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
 
 type category = {
   id: string;
@@ -57,11 +57,13 @@ export const Accordion = ({
             </div>
 
             <AccordionContent>
-              <div className='flex gap-4'>
+              <div className='flex flex-wrap gap-4'>
                 {categories?.map((category) => (
-                  <Button key={category.id} variant='outline' size='lg'>
-                    <Link to={`/${link}/${category.id}`}>{category.category}</Link>
-                  </Button>
+                  <Link to={`/${link}/${category.id}`} key={category.id}>
+                    <Button variant='outline' size='lg'>
+                      {category.category}
+                    </Button>
+                  </Link>
                 ))}
               </div>
             </AccordionContent>
