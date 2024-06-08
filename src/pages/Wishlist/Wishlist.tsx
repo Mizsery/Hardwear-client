@@ -51,7 +51,7 @@ export const Wishlist = () => {
                 />
               </div>
 
-              <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex '>
+              <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex md:gap-2 '>
                 <div className='text-wrap text-center font-bold md:text-lg'>
                   {wish.product.name}
                 </div>
@@ -67,7 +67,7 @@ export const Wishlist = () => {
                 {wish.product.price} руб.
               </div>
 
-              <div className='flex items-center justify-center md:col-span-3 lg:col-span-1'>
+              <div className='flex items-center justify-center md:col-span-3 lg:col-span-1 lg:justify-between'>
                 <Button
                   className='md:text-lg'
                   variant='link'

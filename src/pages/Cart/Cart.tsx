@@ -63,8 +63,10 @@ export const Cart = () => {
                   />
                 </div>
 
-                <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex md:gap-3 '>
-                  <span className='font-bold md:text-xl'>{prod.product.name}</span>
+                <div className='md:items-left flex flex-col items-center justify-center gap-0 max-md:flex md:gap-2 '>
+                  <span className='text-wrap text-center font-bold md:text-lg'>
+                    {prod.product.name}
+                  </span>
                   <div className='md:text-lg'>
                     {prod.size ? <div>Размер {prod.size}</div> : null}
                   </div>

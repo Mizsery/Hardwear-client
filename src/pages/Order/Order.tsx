@@ -52,7 +52,7 @@ export const Order = () => {
                       className='h-auto w-[340px] rounded-xl shadow-xl md:max-w-full'
                     />
                   </div>
-                  <div className='flex flex-col items-center justify-center gap-0'>
+                  <div className='flex flex-col items-center justify-center gap-0 md:gap-2'>
                     <div className='text-wrap text-center font-bold md:text-lg'>
                       {prod.product.name}
                     </div>
