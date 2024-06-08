@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Bookmark, LogIn, LogOut, MenuIcon, ShoppingCart, User } from 'lucide-react';
+import { Bookmark, LogIn, LogOut, ShoppingCart, User } from 'lucide-react';
 
 import { Logo } from '../Logo/Logo';
 import { ModeToggle } from '../ModeToggle/ModeToggle';
 import { Button } from '../ui/button';
 
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { MobileNavbar } from './MobileNavbar';
+
 import { useAppSelector } from '@/utils/api/hooks';
 import { useLogoutMutation } from '@/utils/api/services/userApi';
 import { selectIsAuthenticated } from '@/utils/api/slices/userSlice';
@@ -83,49 +84,7 @@ export const Navbar = () => {
         )}
       </div>
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button className='md:hidden lg:hidden' size='icon' variant='ghost'>
-            <MenuIcon className='h-6 w-6' />
-            <span className='sr-only'>Toggle navigation menu</span>
-          </Button>
-        </SheetTrigger>
-
-        <SheetContent side='top'>
-          <ModeToggle size='sm' variant='secondary' />
-          <div className='flex'>
-            <div className='grid w-[200px] p-4'>
-              <Link className='text-xl font-medium underline-offset-4 hover:underline' to='/'>
-                Главная
-              </Link>
-              <Link
-                className='text-xl font-medium underline-offset-4 hover:underline'
-                to='/about-us'
-              >
-                О нас
-              </Link>
-              <Link
-                className='text-xl font-medium underline-offset-4 hover:underline'
-                to='/contact'
-              >
-                Контакты
-              </Link>
-            </div>
-
-            <div className='grid w-[200px] p-4'>
-              <Link className='text-xl font-medium underline-offset-4 hover:underline' to='/'>
-                Одежда
-              </Link>
-              <Link
-                className='text-xl font-medium underline-offset-4 hover:underline'
-                to='/accessories'
-              >
-                Аксессуары
-              </Link>
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
+      <MobileNavbar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
     </header>
   );
 };

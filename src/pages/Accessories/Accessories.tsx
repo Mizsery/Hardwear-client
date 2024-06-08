@@ -15,7 +15,7 @@ export const Accessories = () => {
   return (
     <>
       <Accordion categories={categories} title='Аксессуары' link='accessories' />
-      <div className='grid  grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4'>
+      <div className='grid  grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4'>
         {products && products.map((product) => <ProductItems key={product.id} product={product} />)}
       </div>
     </>

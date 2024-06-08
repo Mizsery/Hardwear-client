@@ -2,19 +2,21 @@ import { Link } from 'react-router-dom';
 
 import { Card, CardContent, CardFooter } from '../ui/card';
 
+import { BASE_URL } from '@/utils/constant/api';
+
 interface ProductItemsProps {
-  product: Products;
+  product: Product;
 }
 
 export const ProductItems = ({ product }: ProductItemsProps) => {
   return (
     <Link to={`/${product.categoryId}/${product.id}`}>
-      <Card>
+      <Card className='h-full'>
         <CardContent className='px-0'>
           <img
-            src={`${'http://localhost:3000'}${product.image}`}
+            src={`${BASE_URL}${product.image}`}
             alt={product.name}
-            className='rounded-xl'
+            className='h-[240px] w-full rounded-xl object-cover sm:h-[320px] lg:h-[460px] '
           />
         </CardContent>
         <CardFooter>
