@@ -1,0 +1,12 @@
+/node_modules
+.vscode
+
+.gitignore
+.prettierrc
+.prettierignore
+.eslint.cjs
+README.md
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

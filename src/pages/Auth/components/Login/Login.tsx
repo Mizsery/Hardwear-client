@@ -71,6 +71,11 @@ export const Login = ({ setSelectedTab }: LoginProps) => {
             </FormItem>
           )}
         />
+
+        <Button type='submit' className='w-full' disabled={isLoading}>
+          Войти
+        </Button>
+
         <p className='items-center text-xs md:text-sm'>
           Нет аккаунта?{' '}
           <Button
@@ -81,10 +86,6 @@ export const Login = ({ setSelectedTab }: LoginProps) => {
             Зарегистрироваться
           </Button>
         </p>
-
-        <Button type='submit' className='w-full' disabled={isLoading}>
-          Войти
-        </Button>
       </form>
     </Form>
   );

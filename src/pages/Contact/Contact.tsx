@@ -23,9 +23,9 @@ export const Contact = () => {
       <div className=' mt-4 flex flex-col items-center gap-2'>
         <span className='text-lg font-bold max-md:hidden'>Mы на карте:</span>
         <img
-          src='../../../public/map.png'
+          src='/map.png'
           className='m-auto max-h-full rounded-md object-scale-down drop-shadow-md'
-          alt=''
+          alt='ЦУМ Якутск, 5 этаж, ул. Курашова, 4'
         />
       </div>
     </>
